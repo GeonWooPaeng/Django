@@ -16,6 +16,8 @@
  - cd fc_community
  - django-admin startapp board
 
+5. app을 project에 등록 시켜주기 
+ - project를 생성했을 때 생성된 폴더(fc_community)의 settings.py
+ - INSTALLED_APPS 부분에 만든 app을 써주기
 
 
- 
