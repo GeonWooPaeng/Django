@@ -1,0 +1,21 @@
+- 프로젝트 설정 - 
+1. 가상환경 설정 
+ - vscode 터미널을 켜서 pip3 install virtualenv (package를 만드는 것이다.)
+ - virtualenv django_venv (django_venv라는 package만들기)
+ - django_venv/scripts/activate (윈도우 가상 환경을 사용하기 위한 것)
+
+2. 가상환경에 django 설치
+ - 1번을 다 한 후 pip install django 
+
+3. 프로젝트 만들기(fc_community)
+=> 하나의 프로그램 
+ - django-admin startproject fc_community 
+
+4. app 만들기(board)
+=> 사용자의 묶음
+ - cd fc_community
+ - django-admin startapp board
+
+
+
+ 
