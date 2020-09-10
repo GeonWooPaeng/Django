@@ -1,8 +1,15 @@
+- window cmd 명령어 - 
+cd.. - 뒤로가기 
+cd - 해당 파일로 들어가기
+dir - 파일 확인(os의 ls)
+
+---------------------------------------------------------------------------
+
 - 프로젝트 설정 - 
 1. 가상환경 설정 
  - vscode 터미널을 켜서 pip3 install virtualenv (package를 만드는 것이다.)
  - virtualenv django_venv (django_venv라는 package만들기)
- - django_venv/scripts/activate (윈도우 가상 환경을 사용하기 위한 것)
+ - django_venv/scripts/activate (윈도우 가상 환경을 사용하기 위한 것) or cd django_venv -> cd scripts -> activate
 
 2. 가상환경에 django 설치
  - 1번을 다 한 후 pip install django 
@@ -21,3 +28,17 @@
  - INSTALLED_APPS 부분에 만든 app을 써주기
 
 
+-------------------------------------------------------------------------
+자동으로 data base 생성하기 
+1. 우선 프로젝트(cd fc_community)로 들어간다
+2. dir로 manage.py가 있는지 확인한다.
+3. fcuser의 models.py에 db를 만들 model을 만들어야 한다.
+4. fc_community의 settings.py에서 INSTALLED_APPS부분에 fcuser을 넣어 줘야한다.
+
+ - python manage.py makemigrations 
+ - python manage.py migrate (seetings에서 app에 자동으로 넣어준다.) -> db.sqlite3 생성된다.
+ 
+ - db확인하는 명령어
+ - sqlite3 db.sqlite3
+ - .tables
+ - .schema paeng_fcuser 
