@@ -38,7 +38,18 @@ dir - 파일 확인(os의 ls)
  - python manage.py makemigrations 
  - python manage.py migrate (seetings에서 app에 자동으로 넣어준다.) -> db.sqlite3 생성된다.
  
- - db확인하는 명령어
- - sqlite3 db.sqlite3
- - .tables
- - .schema paeng_fcuser 
+ ---------------------------------------------------------
+
+ 프로젝트 실행 (Django adminstration)
+ 1. cd fc_community
+ 2. python manage.py runserver 해서 http://..../admin 으로 들어간다.(나가기: ctrl + C )
+ 3. 계정 생성(django adminstration)
+  - python manage.py createsuperuser
+  - 아이디, 비번 입력
+ 4. 다시 2번 실행
+
+
+
+ ------------------------------------------------
+ django admin에 만든 user 등록하기
+ 1. fcuser의 admin.py, model.py에 들어가서 코딩한다.

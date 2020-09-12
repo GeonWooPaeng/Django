@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# admin 하위에 있는 것은 다 admin.site.urls로 연결하겠다.
+# => 주소 뒤에다 admin을 붙이면 장고의 관리자 도구를 사용할 수 있다.
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
