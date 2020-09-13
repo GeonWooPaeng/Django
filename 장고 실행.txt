@@ -53,3 +53,21 @@ dir - 파일 확인(os의 ls)
  ------------------------------------------------
  django admin에 만든 user 등록하기
  1. fcuser의 admin.py, model.py에 들어가서 코딩한다.
+
+
+--------------------------------------------------
+templates 짜기
+ - bootstrap 사용할 준비 - 
+ - fcuser templates에서 register.html을 만든다.
+ - https://getbootstrap.com/docs/4.5/getting-started/introduction/ 을 이용해서 만든다.
+ - css, js, meta tags(starter template) 복사해서 head에 넣어준다.
+ - bootstrap에서 form 코드 붙여 넣기
+
+
+ - django project 안에서 볼수 있게 하기 - 
+ - fcuser의 views.py로 가서 연결
+ - fc_community의 urls.py로 가서 fcuser 작성
+ - fcuser에 urls.py를 만들어 준다.
+ - python manage.py makemigrations 
+ - python manage.py migrate (seetings에서 app에 자동으로 넣어준다.) -> db.sqlite3 생성된다.
+ - python manage.py runserver을 해서 주소 뒤에 /fcuser/register을 넣어서 확인해본다.
