@@ -12,6 +12,7 @@ def register(request):
     elif request.method == 'POST':
         #html에서의 name값으로 정보전달
         username = request.POST.get('username', None)
+        useremail = request.POST.get('useremail',None)
         password = request.POST.get('password', None)
         re_password = request.POST.get('re-password', None)
 
@@ -23,7 +24,7 @@ def register(request):
         #같은 홈페이지에서 발생
         res_data = {}
 
-        if not (username and password and re_password):
+        if not (username and useremail and password and re_password):
             res_data['error'] = '모든 값을 입력해야 합니다.'
         
         elif password != re_password:
@@ -33,6 +34,7 @@ def register(request):
         else:
             fcuser = Fcuser(
                 username=username,
+                useremail=useremail,
                 password=make_password(password) #비밀번호 암호화된 상태로 들어간다.
             )
 
