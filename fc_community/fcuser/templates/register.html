@@ -17,7 +17,7 @@
             integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
         </script>
 
-    </head>
+    </head> 
     <body>
         <div class="container">
             <div class="row mt-5">
@@ -27,21 +27,46 @@
             </div>
             <div class="row mt-5">
                 <div class="col-12">
-                    <form>
+                    {{ error }}
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <form method="POST" action=".">
+                        <!-- form은 데이터를 서버에 전달 하는데 {% csrf_token %}이 보안 역할을 해준다. -->
+                        {% csrf_token %}
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Email address</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                          <label for="username">사용자 이름</label>
+                          <input 
+                            type="text" 
+                            class="form-control" 
+                            id="username" 
+                            placeholder="사용자 이름"
+                            name="username"
+                           />
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputPassword1">Password</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1">
+                          <label for="password">비밀번호</label>
+                          <input 
+                            type="password" 
+                            class="form-control" 
+                            id="password" 
+                            placeholder="비밀번호"
+                            name="password"
+                           />
                         </div>
-                        <div class="form-group form-check">
-                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        <div class="form-group">
+                            <label for="re-password">비밀번호 확인</label>
+                            <input 
+                                type="password" 
+                                class="form-control" 
+                                id="re-password" 
+                                placeholder="비밀번호 확인"
+                                name="re-password"
+                            />
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        
+                        <button type="submit" class="btn btn-primary">등록</button>
                       </form>
                 </div>
             </div>
