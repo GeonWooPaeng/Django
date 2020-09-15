@@ -70,3 +70,18 @@ templates 짜기
  - python manage.py makemigrations 
  - python manage.py migrate (seetings에서 app에 자동으로 넣어준다.) -> db.sqlite3 생성된다.
  - python manage.py runserver을 해서 주소 뒤에 /fcuser/register을 넣어서 확인해본다.
+
+
+-------------------------------------------------------
+CDN: 원본이 한국에 있지만 원본과 동일한 내용이 각 나라에 뿌러져 있어 여러나라 사용자들이 빠른 것을 사용하는 것
+
+static 폴더에 js, css파일을 넣어 관리한다.
+- 테마 넣기
+- https://bootswatch.com/ 에서 다운받은 파일(bootstrap.min.css)을 static 폴더로 넣어준다.
+- settings.py에서 경로 설정해준다.
+
+
+-----------------------------------------------------
+세션 
+클라이언트 - 웹브라우저
+쿠키 - 하나의 저장소(db를 쉽게 찾을 수 있게하는 암호)
