@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password, check_password
 from .models import Fcuser
+from .forms import LoginForm
 # Create your views here.
 
 def home(request):
@@ -15,30 +16,48 @@ def home(request):
     return HttpResponse('Home!')
 
 
+def logout(request):
+    if request.session.get('user'):
+        del(request.session['user'])
+    
+    return redirect('/')
+
+
 def login(request):
     #로그인 기능
-    if request.method == 'GET':
-        return render(request, 'login.html')
+    # if request.method == 'GET':
+    #     return render(request, 'login.html')
     
-    elif request.method == 'POST':
-        username = request.POST.get('username', None)
-        password = request.POST.get('password', None)
+    # elif request.method == 'POST':
+    #     username = request.POST.get('username', None)
+    #     password = request.POST.get('password', None)
 
-        res_data = {}
-        if not (username and password):
-            res_data['error'] = '값을 모두 입력해주세요'
-        else:
-            fcuser = Fcuser.objects.get(username=username)
-            if check_password(password, fcuser.password):
-                # 등록된 것과 비밀번호 일치 여부, 로그인 처리 
-                # 세션 관리
-                request.session['user'] = fcuser.id 
-                # 홈으로 가야된다.
-                return redirect('/')
-            else:
-                res_data['error'] = '비밀번호가 틀렸습니다.'
+    #     res_data = {}
+    #     if not (username and password):
+    #         res_data['error'] = '값을 모두 입력해주세요'
+    #     else:
+    #         fcuser = Fcuser.objects.get(username=username)
+    #         if check_password(password, fcuser.password):
+    #             # 등록된 것과 비밀번호 일치 여부, 로그인 처리 
+    #             # 세션 관리
+    #             request.session['user'] = fcuser.id
+    #             # 홈으로 가야된다.
+    #             return redirect('/')
+    #         else:
+    #             res_data['error'] = '비밀번호가 틀렸습니다.'
 
-        return render(request, 'login.html', res_data)
+    #     return render(request, 'login.html', res_data)
+
+    # 로그인 form
+    if request.method == 'POST':
+        form = LoginForm(request.POST) #form에 post 데이터를 넣어준다.
+        if form.is_valid(): #form이 정상인지 확인
+            #세션 코드(session)
+            request.session['user'] = form.user_id
+            return redirect('/')
+    else:
+        form = LoginForm() 
+    return render(request, 'login.html', {'form': form})
 
 
 def register(request):

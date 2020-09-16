@@ -5,4 +5,5 @@ urlpatterns = [
     #register 등록 
     path('register/', views.register),
     path('login/', views.login), #로그인 기능
+    path('logout/', views.logout),
 ]
