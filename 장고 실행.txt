@@ -34,7 +34,8 @@ dir - 파일 확인(os의 ls)
 1. 우선 프로젝트(cd fc_community)로 들어간다
 2. dir로 manage.py가 있는지 확인한다.
 3. fcuser의 models.py에 db를 만들 model을 만들어야 한다.
-4. fc_community의 settings.py에서 INSTALLED_APPS부분에 fcuser을 넣어 줘야한다.
+5. fcuser의 admin.py를 수정합니다.
+6. fc_community의 settings.py에서 INSTALLED_APPS부분에 fcuser을 넣어 줘야한다.
 
  - python manage.py makemigrations 
  - python manage.py migrate (seetings에서 app에 자동으로 넣어준다.) -> db.sqlite3 생성된다.
@@ -105,3 +106,14 @@ static 폴더에 js, css파일을 넣어 관리한다.
   - login.html 부분을 고친다.
   - fcuser 폴더에서 forms.py를 만든다.
   - fcuser 폴더에서 views.py를 고친다.
+
+
+-------------------------------------------------------
+게시판 만들기(board)
+ - template에 base.html 복사한후 board_list.html(게시판html) 만들기
+ - fc_community의 urls.py, board의 urls.py, views.py 수정하기
+
+model을 만들고 model을 가져오기 -> /admin에서 저장하기 -> html에 들어내기
+- models.py작성 -> views.py 작성 -> admin.py 작성 -> board_list.html 작성
+
+
