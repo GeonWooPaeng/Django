@@ -117,3 +117,10 @@ model을 만들고 model을 가져오기 -> /admin에서 저장하기 -> html에
 - models.py작성 -> views.py 작성 -> admin.py 작성 -> board_list.html 작성
 
 
+-----------------------------------------------------
+게시판 글쓰기 만들기
+ - board_write.html -> forms.py -> views.py(board_write부분) -> urls.py
+
+로그인한 사용자가 자동으로 글쓰게 하기, 글상세 보기
+ - views.py 작성
+ - board_detail 할때 pk를 번호로 받아오기 위해서 urls.py에서 경로를 지정해준다.

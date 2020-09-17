@@ -1,0 +1,31 @@
+<!-- 상속 받는 방법 -->
+{% extends "base.html" %} 
+{% block contents %}
+<div class="row mt-5">
+    <div class="col-12">
+        <form method="POST" action=".">
+            <!-- form은 데이터를 서버에 전달 하는데 {% csrf_token %}이 보안 역할을 해준다. -->
+            {% csrf_token %}
+            <!-- django form 수행 -->
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field.field.widget.name }}
+                <!-- 글쓰는 곳으로 바꾸기 -->
+                {% ifequal field.name 'contents' %}
+                <textarea class="form-control" name="{{ field.name }}" placeholder="{{ field.label }}"></textarea>
+                {% else %}
+                <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}" 
+                 placeholder="{{ field.label }}" name="{{ field.name }}" />
+                {% endifequal %}
+            </div>
+            <!-- error 정보 출력 -->
+            {% if field.errors %}
+            <span style="color:red">{{ field.errors }}</span>
+            {% endif %}
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">글쓰기</button>
+          </form>
+    </div>
+</div>
+{% endblock %}
