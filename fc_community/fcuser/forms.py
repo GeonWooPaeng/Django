@@ -31,3 +31,6 @@ class LoginForm(forms.Form):
             else:
                 #id를 views.py에 보내주기
                 self.user_id = fcuser.id
+
+
+
