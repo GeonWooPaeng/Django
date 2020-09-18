@@ -24,9 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'z$aybw@y8h_5%m)9wdd#*a9%nq-aob$57dhbwx9h$q-rd6y*gh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# 개발할때 틀린 부분을 보여준다.
+DEBUG = False
 
-ALLOWED_HOSTS = []
+# pythonanyware로 배포하면 pythonanyware을 가입한 아이디 작성
+# 배포 후 해당 주소로만 들어오게 한다. '*' -> 모든 주소
+ALLOWED_HOSTS = [
+    '*'
+]
 
 
 # Application definition
@@ -122,7 +127,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    #static 폴더로 접근하게 해준다.
-    os.path.join(BASE_DIR, 'static'),
-]
+# STATICFILES_DIRS = [
+#     #static 폴더로 접근하게 해준다.
+#     os.path.join(BASE_DIR, 'static'),
+# ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

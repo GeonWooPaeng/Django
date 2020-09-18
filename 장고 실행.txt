@@ -143,3 +143,53 @@ home 만들기
  - board_detail.html
 
  - board의 forms.py에서 tags 추가, views.py의 board_write부분
+
+
+-------------------------------------------------------------------
+배포하기
+- pythonanyware을 통해 배포 - 
+ - fc_community의 settings.py에서 DEBUG를 False로 해놓는다.
+ - ALLOWED_HOSTS의 부분 설정
+ - STATICFILES_DIRS 주석처리 -> STATIC_ROOT 작성
+
+- pythonanyware 사이트에서-
+ - pythonanyware 가입 -> Files -> Upload a file에 fc_community(큰거).zip으로 해서 upload하기
+ - open bash console here을 누른다.
+ - ls로 파일 확인 
+ - unzip fc_community.zip 으로 압축해제 -> 프로젝트 업로드 완료 -> ls로 확인
+
+(open bash console here에서)
+- 가상 환경 만들기 - 
+ - virtualenv --python=python3.7 fc_env  -> ls확인
+
+- 가상환경 활성화 - 
+ - fc_env/bin/activate (맥에서는 source를 앞에 붙여야 한다.) -> ls 
+
+ - cd fc_community 
+ - python manage.py collectstatic (수집) -> yes 
+ - python manage.py migrate 
+ - exit 
+
+- pythonanyware 사이트에서 - 
+ - Web -> add a new web app -> select부분에서 Manual configuration 선택 -> python version은 3.7선택
+ - 밑에 Code: 부분에서 Source code: 설정하기 /home/username(사람마다 다르다)/fc_community(프로젝트 명)
+ 
+ - WSGI configuration file: 설정하기 -> 옆 링크 눌러서 들어가서 +++ HELLO WORLD +++ 부분을 주석처리한다.
+
+- WSGI configuration file 링크 안에서 - 
+ - +++ DJANGO ++++ 부분의 주석을 풀러줘야 한다.
+ - path 부분 Source code부분과 같이 바꾸기
+ - os.environ 부분 맨뒤에 'fc_community(프로젝트 명).settings'으로 바꾸기
+ - 저장하기
+
+- Virtualenv 부분 -
+ - 경로를 /home/username(사람마다 다르다)/fc_env'
+
+
+- Static files 부분 - 
+# 디자인 넣기 위함 
+ - URL에 /static/ 
+ - Directory에 /home/username(사람마다 다르다)/fc_community/static/
+
+- Reload 부분 - 
+ - reload 한 후 맨 위 링크 들어가기
