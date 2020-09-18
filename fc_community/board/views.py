@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator 
 from django.http import Http404
 from fcuser.models import Fcuser
+from tag.models import Tag
 from .models import Board
 from .forms import BoardForm
 # Create your views here.
@@ -28,12 +29,24 @@ def board_write(request):
         if form.is_valid():
             user_id = request.session.get('user')
             fcuser = Fcuser.objects.get(pk=user_id)
+            
 
             board = Board() 
             board.title = form.cleaned_data['title']
             board.contents = form.cleaned_data['contents']
             board.writer = fcuser
             board.save() 
+
+            # 태그 부분
+            tags = form.cleaned_data['tags'].split(',')
+            for tag in tags:
+                if not tag:
+                    continue 
+
+               # Tag.objects.get_or_create(name=tag, writer=writer)(조건: tag의 이름,작성자가 모두 같은 경우면 가져오고 아니면 생성을 해라)
+               # _tag: 생성된 개체, _: 새로운건지 원래 있던건지 여부
+                _tag, _ = Tag.objects.get_or_create(name=tag)
+                board.tags.add(_tag)
 
             return redirect('/board/list/')
 

@@ -9,6 +9,17 @@
             
             <label for="contents">내용</label>
             <textarea class="form-control" readonly>{{ board.contents }}</textarea>
+            
+            <label for="tags">태그</label>
+            <span id="tags" class="form-control">
+                <!-- {{ board.tags.all }} => 형태 보기 -->
+                <!-- {% for tag in board.tags.all %}
+                {{ tag.name }},
+                {% endfor %} -->
+                
+                <!-- 파이썬 문법 사용(django) -->
+                {{ board.tags.all|join:", "}}
+            </span>
         </div>
         <button class="btn btn-primary" onclick="location.href='/board/list/'">돌아가기</button>
     </div>
