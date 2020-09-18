@@ -6,14 +6,14 @@ from .forms import LoginForm
 # Create your views here.
 
 def home(request):
-    #로그인 기능
-    user_id = request.session.get('user') # session에서 user정보 가져오기 
-    if user_id:
-        #로그인 했을 시
-        fcuser = Fcuser.objects.get(pk=user_id) 
-        return HttpResponse(fcuser.username)
+    # home.html에서 사용
+    # #로그인 기능
+    # user_id = request.session.get('user') # session에서 user정보 가져오기 
+    # if user_id:
+    #     #로그인 했을 시
+    #     fcuser = Fcuser.objects.get(pk=user_id) 
 
-    return HttpResponse('Home!')
+    return render(request, 'home.html')
 
 
 def logout(request):

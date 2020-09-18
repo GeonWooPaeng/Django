@@ -124,3 +124,10 @@ model을 만들고 model을 가져오기 -> /admin에서 저장하기 -> html에
 로그인한 사용자가 자동으로 글쓰게 하기, 글상세 보기
  - views.py 작성
  - board_detail 할때 pk를 번호로 받아오기 위해서 urls.py에서 경로를 지정해준다.
+
+
+ ----------------------------------------------------------
+ 링크 연결 (실제 사이트처럼 만들기)
+home 만들기
+ - fcuser의 templates에다가 home.html 제작 -> views.py의 home으로 가서 설정
+ - 각 html에서 onclick="location.href='/board/list/'"같이 링크 걸어주기

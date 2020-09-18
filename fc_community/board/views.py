@@ -44,6 +44,8 @@ def board_write(request):
 
 def board_list(request):
     all_boards = Board.objects.all().order_by('-id') #모든것을 -정렬로 가지고 오겠다 => 최신것을 먼저 가지고 오겠다.
+    
+    # 이전, 다음 버튼 설정
     page = int(request.GET.get('p', 1)) #p라는 형태로 받고 없으면 1
     paginator = Paginator(all_boards, 2) #한 페이지당 2개씩 보여준다.
     
