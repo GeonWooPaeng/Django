@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator 
 from django.http import Http404
 from fcuser.models import Fcuser
 from .models import Board
@@ -20,7 +21,7 @@ def board_write(request):
     #사용자가 있는지 확인
     if not request.session.get('user'):
         return redirect('/fcuser/login/')
-        
+
     if request.method == 'POST':
         # 로그인한 사용자가 자동으로 글쓰게 하기
         form = BoardForm(request.POST)
@@ -42,6 +43,11 @@ def board_write(request):
     return render(request, 'board_write.html', {'form': form})
 
 def board_list(request):
-    boards = Board.objects.all().order_by('-id') #모든것을 -정렬로 가지고 오겠다 => 최신것을 먼저 가지고 오겠다.
+    all_boards = Board.objects.all().order_by('-id') #모든것을 -정렬로 가지고 오겠다 => 최신것을 먼저 가지고 오겠다.
+    page = int(request.GET.get('p', 1)) #p라는 형태로 받고 없으면 1
+    paginator = Paginator(all_boards, 2) #한 페이지당 2개씩 보여준다.
+    
+    boards = paginator.get_page(page)
+
     return render(request, 'board_list.html', {'boards':boards})
 
