@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import Http404
 from fcuser.models import Fcuser
 from .models import Board
 from .forms import BoardForm
@@ -7,10 +8,19 @@ from .forms import BoardForm
 
 def board_detail(request, pk):
     # 글 상세보기
-    board = Board.objects.get(pk=pk) #입력받은 id의 글을 받아온다.
+    # 예외 처리
+    try: 
+        board = Board.objects.get(pk=pk)#입력받은 id의 글을 받아온다.
+    except Board.DoesNotExist:
+        raise Http404('게시글을 찾을 수 없습니다.')
+
     return render(request, 'board_detail.html', {'board':board})
 
 def board_write(request):
+    #사용자가 있는지 확인
+    if not request.session.get('user'):
+        return redirect('/fcuser/login/')
+        
     if request.method == 'POST':
         # 로그인한 사용자가 자동으로 글쓰게 하기
         form = BoardForm(request.POST)
