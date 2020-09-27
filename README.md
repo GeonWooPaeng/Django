@@ -1,8 +1,10 @@
 # Django
 
 ## function
+- home 
+
 - login
 
-- logout 
+- register 
 
 - board 
